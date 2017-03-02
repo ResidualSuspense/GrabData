@@ -2,6 +2,8 @@ package com.didispace;
 
 import com.didispace.domain.InfoClass;
 import com.didispace.repository.InfoClassRepository;
+import com.didispace.repository.InfoRepository;
+import com.didispace.tngouJsonBean.InfoRoot;
 import com.didispace.tngouJsonBean.InfoclassRoot;
 import com.didispace.tngouapi.TnGouApi;
 import org.junit.Test;
@@ -38,6 +40,7 @@ public class DaoTest {
     @Autowired
     InfoClassRepository infoClassRepository;
 
+
     @Test
     public void InfoClassTest() throws IOException {
         Call call = tnGouApi.getInfoclass();
@@ -45,18 +48,27 @@ public class DaoTest {
         if (rootResponse.isSuccessful()) {
             InfoclassRoot root = rootResponse.body();
             if (root.isStatus()) {
-                List<InfoclassRoot.TngouBean> tngou = root.getTngou();
-               List<InfoClass> infoClasss= tngou.stream().map(new Function<InfoclassRoot.TngouBean, InfoClass>() {
-                    @Override
-                    public InfoClass apply(InfoclassRoot.TngouBean tngouBean) {
-                        //(int id, String name, String title, String keywords, String description, int seq)
-                        InfoClass infoClass=new  InfoClass(tngouBean.getId(),tngouBean.getName(),tngouBean.getTitle(),
-                                tngouBean.getKeywords(),tngouBean.getDescription(),tngouBean.getSeq());
-                        return infoClass;
-                    }
-                }).collect(Collectors.toList());
-                infoClassRepository.save(infoClasss);
+                List<InfoClass> infoClasses=root.getTngou();
+             //   infoClassRepository.save(infoClasses);
+                infoClassRepository.save(infoClasses.get(0));
             }
         }
     }
+
+
+    @Autowired
+    InfoRepository infoRepository;
+    @Test
+    public void infoTest() throws IOException {
+        Call call = tnGouApi.getInfoAll();
+        Response<InfoRoot> rootResponse = call.execute();
+        if (rootResponse.isSuccessful()) {
+            InfoRoot infoRoot =rootResponse.body();
+            if(infoRoot.isStatus()){
+                infoRepository.save(infoRoot.getTngou());
+            }
+        }
+    }
+
+
 }
