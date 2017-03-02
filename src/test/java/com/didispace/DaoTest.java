@@ -9,7 +9,6 @@ import com.didispace.tngouapi.TnGouApi;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import retrofit2.Call;
@@ -17,8 +16,6 @@ import retrofit2.Response;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * Created by Administrator on 2017-02-28.
