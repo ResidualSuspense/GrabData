@@ -1,7 +1,9 @@
 package com.didispace.tngouapi;
 
+import com.didispace.domain.NewsInfo;
 import com.didispace.tngouJsonBean.InfoRoot;
 import com.didispace.tngouJsonBean.InfoclassRoot;
+import com.didispace.tngouJsonBean.NewsInfoRoot;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -36,6 +38,15 @@ public interface TnGouApi {
 
     @GET("info/list")
     Call<InfoRoot> getInfoByIdAndRows(@Query("id") int id,@Query("rows") int rows);
+
+
+    /**
+     *最新健康资讯,通过当前最新的ID，取得最新的新闻列表，通过该方法可以做到数据的不重复！
+     * @param id 当前最新的热点热词关键词id
+     * @return
+     */
+    @GET("info/news")
+    Call<NewsInfoRoot> getInfoNews(@Query("id") Long id, @Query("classify") Integer classify, @Query("rows") Integer rows );
 
 
 

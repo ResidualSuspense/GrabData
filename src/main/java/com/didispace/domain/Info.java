@@ -23,6 +23,22 @@ public class Info {
     private int rcount;//评论读数
     private Timestamp time;
 
+    public Info() {
+    }
+
+    public Info(Long id, String title, int infoclass, String img, String description, String keywords, int count, int fcount, int rcount, Timestamp time) {
+        this.id=id;
+        this.title = title;
+        this.infoclass = infoclass;
+        this.img = img;
+        this.description = description;
+        this.keywords = keywords;
+        this.count = count;
+        this.fcount = fcount;
+        this.rcount = rcount;
+        this.time = time;
+    }
+
     public Long getId() {
         return id;
     }

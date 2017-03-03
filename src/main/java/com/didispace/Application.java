@@ -2,14 +2,16 @@ package com.didispace;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  *
- * @author 程序猿DD
+ * @author 程序猿xs
  * @version 1.0.0
  * @blog http://blog.didispace.com
  *
  */
+@EnableScheduling
 @SpringBootApplication
 public class Application {
 
